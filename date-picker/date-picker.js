@@ -2,7 +2,9 @@
   var DatePicker = function (eleCls) {
     this.init(eleCls);
   };
-  var year, month;
+  var year, month, day,
+    isOpen = false, //标识日期选择器是否打开
+    ele; //日期输入框对象
   const getDateData = (y, m) => {
     year = y || year, month = m || month;
     var date;
@@ -12,6 +14,7 @@
       date = new Date();
       year = date.getFullYear();
       month = date.getMonth() + 1;
+      day = date.getDate();
     }
     var htmlArr = [`
     <div class="date-picker-header">
@@ -67,9 +70,7 @@
     }
     htmlArr.push(`</tbody></table></div>`);
     htmlArr.push(`<div class="date-picker-footer">
-      <a href="javascript:;" class="date-picker-btn">重置</a>
-      <a href="javascript:;" class="date-picker-btn">现在</a>
-      <a href="javascript:;" class="date-picker-btn">确定</a>
+      <a href="javascript:;" class="date-picker-btn current-date-btn">现在</a>
     </div>`);
 
     return htmlArr.join('');
@@ -82,30 +83,42 @@
     datePickerWrapper.left = left + 'px';
 
     render();
+
+    isOpen = true;
   }
-  const render = (year, month) => {
+  const render = (y, m) => {
     var datePickerWrapper = document.querySelector('.date-picker');
-    datePickerWrapper.innerHTML = getDateData(year, month);
+    datePickerWrapper.innerHTML = getDateData(y, m);
+
+    // //高亮当前输入框中的日期或者当前日期
+    var val = new Date(ele.value);
+    var date = val.getDate() ? val : new Date();
+    var currentDate = document.querySelector(`.date-picker td[data-date="${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}"]`);
+    currentDate && currentDate.classList.add('current-date');
   }
   const hide = () => {
     var datePickerWrapper = document.querySelector('.date-picker');
     datePickerWrapper.classList.remove('date-picker-show');
+    isOpen = false;
   }
   DatePicker.prototype.init = eleCls => {
-    var input = document.querySelector(eleCls);
-    input.addEventListener('focus', event => {
+    var input = ele = document.querySelector(eleCls);
+    input.addEventListener('click', event => {
       var top = input.offsetHeight;
       var left = input.offsetWidth;
       var height = input.height;
 
       //显示当前输入框中的月份
-      var initDate = new Date(input.value).getDate() || new Date();
-      debugger
-      show(top + height, left);
-
-      //高亮当前输入框中的日期或者当前日期
-      var currentDate = document.querySelector(`.date-picker td[data-date="${initDate.getFullYear()}-${initDate.getMonth()+1}-${initDate.getDate()}"]`);
-      currentDate.classList.add('current-date');
+      var val = new Date(input.value);
+      var initDate = val.getDate() ? val : new Date();
+      year = initDate.getFullYear();
+      month = initDate.getMonth() + 1;
+      day = initDate.getDate();
+      if (!isOpen) {
+        show(top + height, left);
+      } else {
+        hide();
+      }
     });
     input.addEventListener('blur', event => {
       // hide();
@@ -130,6 +143,9 @@
         render(year - 1, month);
       } else if (classList.contains('next-year-btn')) {
         render(year + 1, month);
+      } else if (classList.contains('current-date-btn')) {
+        input.value = format(new Date());
+        hide();
       }
     });
   }
