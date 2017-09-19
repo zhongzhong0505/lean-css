@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <input type="checkbox">1
+    <input type="checkbox">2
+    <input type="checkbox">3
+    <input type="checkbox">4
+    <input type="checkbox">5
+    <input type="checkbox">6
+    <input type="checkbox">7
+    <input type="checkbox">8
+</body>
+<script>
+    var checks = document.querySelectorAll('input[type=checkbox]');
+    checks.forEach(check=>{
+        check.addEventListener('click',event=>{
+            if(event.target.checked){
+                sync(event.target);
+            }
+        });
+    });
+
+
+    const sync = (()=>{
+        var cache = [];
+        var timer;
+        return function(ele){
+            cache.push(ele);
+            if(timer){
+                return ;
+            }
+            timer = setTimeout(()=>{
+                console.log(cache);
+                clearTimeout(timer);
+                timer = null;
+                cache.length = 0;
+            },2000); 
+        }
+    })();
+</script>
+</html>
