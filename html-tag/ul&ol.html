@@ -19,11 +19,31 @@
         li:nth-child(1){
             /* list-style-image: url('../images/p1_bg.jpg'); */
         }
-        li::before{
+        /* li::before{
             counter-increment: sec;
             content:counter(sec) "";
             color:red;
+        } */
+        .nav{
+            list-style: none;
         }
+        .nav li{
+            list-style-type: none;
+            background: #ccc;
+            border-left: 5px solid #000;
+            border-bottom: 1px dashed #000;
+            border-right: 1px dashed #000;
+            width:200px;
+            padding:5px;
+        }
+        /* 1. */
+        .nav li:first-child{
+            border-top: 1px dashed #000;
+        }
+        /* 2. */
+        /* .nav li:first-of-type{
+            border-top: 1px dashed #000;
+        } */
     </style>
 </head>
 <body>
@@ -38,6 +58,14 @@
         <li>8</li>
         <li>9</li>
         <li>10</li>
+    </ul>
+
+    <ul class="nav">
+        <li>菜单1</li>
+        <li>菜单2</li>
+        <li>菜单3</li>
+        <li>菜单4</li>
+        <li>菜单5</li>
     </ul>
 </body>
 </html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <p>
+        这是一篇文章
+        这是一篇文章
+        这是一篇文章
+        这是一篇文章
+        这是一篇文章<br>
+        这是一篇文章
+        这是一篇文章
+        这是一篇文章
+    </p>
+
+    <div id="div1" style="overflow:hidden;">
+        <img src="../images/p1_bg.jpg">
+    </div>
+</body>
+<script>
+    window.onload = function(){
+        let p = document.querySelector('p');
+
+        p.addEventListener('click',function(){
+            alert();
+        });
+        const cover = (ele)=>{
+            ele.style.position = 'relative';
+            const coverDiv = document.createElement('div');
+
+            coverDiv.style.position = 'absolute';
+            coverDiv.style.width = '100%';
+            coverDiv.style.height = '100%';
+            coverDiv.style.top = '0px';
+            coverDiv.style.left = '0px';
+            coverDiv.style.background = '#000';
+            coverDiv.style.opacity = '.3';
+
+            coverDiv.addEventListener('click',(e)=>{
+                e.stopPropagation();
+            });
+            ele.appendChild(coverDiv);
+        }
+
+        cover(p);
+        cover(document.querySelector('#div1'));
+    }
+</script>
+</html>

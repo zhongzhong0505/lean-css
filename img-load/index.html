@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <img id="myImg">
+</body>
+<script>
+    window.onload = function(){
+
+
+
+        const proxyImage = function(ele,src){
+            ele.src = "../images/loading.gif";
+            let img = new Image();
+            img.src = src;
+            img.onload = function(){
+                ele.src = img.src;
+            }
+            img.onerror = function(){
+                alert('error');
+            }
+        }
+
+
+        let img = document.querySelector('#myImg');
+        let src = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1505933223120&di=8c094c08a3f32f39c78a5a1cb0db1fb8&imgtype=0&src=http%3A%2F%2Fold.cicphoto.com%2Fnewcicsite%2Fsyxy%2Ftj%2F201408%2FW020140827418494159324.jpg";
+        
+        proxyImage(img,src);
+    }
+</script>
+</html>
