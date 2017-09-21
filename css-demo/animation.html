@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body{
+            padding: 200px;
+        }
+        @keyframes a{
+            from  {
+                opacity: 1;
+            }
+            25%,75%{/*表示从25%-75%这段时间内,透明度一直保持.5*/
+                opacity: 0.5;
+            }
+            to{
+                opacity: 0;
+            }
+        }
+        @keyframes b {
+            from{
+                color: #ccc;
+            }
+            to{
+                color: #000;
+            }
+        }
+        div:nth-of-type(1){
+            width: 100px;
+            height: 100px;
+            border: 1px solid #ccc;
+            background: #f00;
+            animation: a 2s  infinite alternate,
+                        b 2s  infinite alternate;
+        }
+    </style>
+</head>
+<body>
+    <div>搞点文字出来</div>
+</body>
+</html>

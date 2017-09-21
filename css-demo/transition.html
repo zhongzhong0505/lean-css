@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .btn{
+            background: #f00;
+            transition-property: color,background-color,border-color;
+            transition-duration: 1s,2s,3s;
+        }
+        .btn:hover{
+            background: #ff0;
+            color:#544;
+            border-color: #f0b;
+        }
+        div:nth-of-type(1){
+            width: 100px;
+            height: 100px;
+            transform: rotate(45deg);
+            transition: all 3s ;
+            border: 1px solid #ccc;
+        }
+        div:nth-of-type(1):hover{
+            background: #f00;
+        }
+    </style>
+</head>
+<body>
+    <button class="btn">按我</button>
+    <div></div>
+</body>
+</html>

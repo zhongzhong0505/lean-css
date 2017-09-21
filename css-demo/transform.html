@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body{
+            padding:200px;
+        }
+        div:nth-child(1){
+            width: 100px;
+            height: 100px;
+            transform: rotate(45deg);
+            border: 1px solid #ccc;
+        }
+        div:nth-child(2){
+            width: 100px;
+            height: 100px;
+            transform: skew(45deg) translateX(200px);
+            background: red;
+            border: 1px solid #ccc;
+        }
+        div:nth-child(3){
+            width: 100px;
+            height: 100px;
+            transform: scale(2);
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div>旋转45度</div>
+    <div>倾斜45度，x轴移动200px</div>
+    <div>放大2倍</div>
+</body>
+</html>
